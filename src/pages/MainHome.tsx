@@ -1,14 +1,13 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonMenuButton, IonButtons, IonIcon } from '@ionic/react';
 import React from 'react';
-import Login from '../components/Login';
-import './Home.css';
-import { Plugins } from '@capacitor/core';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonMenuButton, IonButtons, IonIcon } from '@ionic/react';
+import Back from '../components/Backbtn';
+import { signout } from '../helpers/auth';
 
-const { Storage } = Plugins;
-
-const Home: React.FC = () => {
-  return (
-    <IonPage>
+const Main:React.FC = ()=>{
+    
+    return(
+        
+<IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
@@ -30,10 +29,15 @@ const Home: React.FC = () => {
             <IonTitle size="large">Blank</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <Login />
+        
+        <IonButton onClick={signout} title="signout">signout</IonButton>
+       
+       
       </IonContent>
     </IonPage>
-  );
+       
+         
+        
+    )
 };
-
-export default Home;
+export default Main;

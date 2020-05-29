@@ -22,6 +22,8 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Main from './pages/MainHome';
+import {SegmentExamples} from './pages/Segments';
 
 const App: React.FC = () => (
   <IonApp>
@@ -29,8 +31,11 @@ const App: React.FC = () => (
       <IonRouterOutlet>
         <Route path="/home" component={Home} exact={true} />
         <Route path="/signup" component={SignupPage} exact={true} />
-
+        <Route path="/main" component={SegmentExamples} />
         <Route exact path="/" render={() => <Redirect to="/home" />} />
+        
+ 
+
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

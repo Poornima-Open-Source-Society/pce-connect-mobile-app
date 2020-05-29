@@ -1,5 +1,8 @@
 import React from 'react';
 //import fetch from 'cross-fetch';
+
+
+
 import {API} from '../backend';
 export const SignupFetch = (val:Object)=>{
     return fetch(`${API}/signup`,{
@@ -16,4 +19,6 @@ export const SignupFetch = (val:Object)=>{
     .catch(err=> console.log(err));
 
 };
+
+
 
