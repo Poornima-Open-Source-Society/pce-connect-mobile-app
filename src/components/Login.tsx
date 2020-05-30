@@ -32,15 +32,22 @@ const Login: React.FC<LoginProps> = () => {
   const onSubmit = async (e:any)=>{
    
    LoginFetch(value)
-   .then((user)=>{
+   .then(async(user)=>{
+      await Storage.set({
+         key: 'token',
+         value: user.token
+      });
+      await Storage.set({
+        key: 'user',
+        value: user.user
+      });
        authenticate(user,()=>{
          setLogging(true);
        });
    })
    .catch(err=>console.log(err));
    
-    const { keys } = await Storage.keys();
-    console.log('Got keys: ', keys);
+    
  
 
   }

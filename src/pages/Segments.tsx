@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonRow, IonCol, IonButton } from '@ionic/react';
-import { call, home, heart, pin, star, globe, basket, camera, bookmark } from 'ionicons/icons';
+import { personOutline, home, heart, pin, star, globe, basket, camera, bookmark } from 'ionicons/icons';
 import {MainHome} from '../components/MainHome';
 import Events from '../components/Events';
 import Posts from '../components/Posts';
@@ -28,13 +28,13 @@ export const SegmentExamples: React.FC = () => {
             <IonIcon icon={home} />
           </IonSegmentButton>
           <IonSegmentButton value="events">
-            <IonIcon icon={heart} />
-          </IonSegmentButton>
-          <IonSegmentButton value="posts">
             <IonIcon icon={pin} />
           </IonSegmentButton>
+          <IonSegmentButton value="posts">
+            <IonIcon icon={heart} />
+          </IonSegmentButton>
           <IonSegmentButton value="notifications">
-            <IonIcon icon={star} />
+            <IonIcon icon={personOutline} />
           </IonSegmentButton>
         </IonSegment>
         <IonRow>
