@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {IonImg,IonModal,IonButton,IonCard,IonCardContent,IonSpinner,IonCardHeader,IonCardSubtitle,IonCardTitle, IonContent, IonItem, IonLabel} from '@ionic/react'
+import {IonImg,IonHeader,IonInput,IonModal,IonButton,IonCard,IonCardContent,IonSpinner,IonCardHeader,IonCardSubtitle,IonCardTitle, IonContent, IonItem, IonLabel, IonTextarea} from '@ionic/react'
 import { PostFetch } from '../helpers/posts';
 import { Plugins,CameraResultType  } from '@capacitor/core';
 import { API } from '../backend';
@@ -97,7 +97,7 @@ export const MainHome:React.FC = ()=>{
           })
           .catch(err=>console.log(err));
           setEbtn(false);
-        
+         
           
     }
     const PostForm = ()=>{
@@ -110,16 +110,10 @@ export const MainHome:React.FC = ()=>{
           <div className="form-group">
           <IonLabel >upload photo</IonLabel>
             <input
-            style={{height:'50px',
-             backgroundColor:'black',
-             borderStyle:"none",
-             textDecoration:"none",
-             color:'white',
-            width:"220px"}}
             onChange={handleChange("photo")}
-            type="file"
             name="photo"
             accept="image"
+            type="file"
             placeholder="choose a file"
             />
           
@@ -127,15 +121,10 @@ export const MainHome:React.FC = ()=>{
           </IonItem>
           <IonItem>
           <div className="form-group">
-          <input
-          onChange={handleChange("title")}
+          <IonInput
+          onIonChange={handleChange("title")}
           name="photo"
-          className="form-control  text-white"
-          style={{backgroundColor:'black'
-          ,borderStyle:"none",
-           fontSize:'26px',
-           marginTop:"17px"
-           }}
+          
           placeholder="Enter title"
           value={title}
           />
@@ -143,16 +132,10 @@ export const MainHome:React.FC = ()=>{
          </IonItem>
          <IonItem>
          <div className="form-group">
-         <textarea
-          onChange={handleChange("description")}
+         <IonTextarea
+          onIonChange={handleChange("description")}
           name="photo"
-          className="form-control bg-dark text-white"
-          style={{backgroundColor:'black',
-          borderStyle:'none',
-           fontSize:'21px',
-           marginTop:"10px",
-           width:"100%"
-        }}
+        
           placeholder="Description"
           value={description}
          />
@@ -167,20 +150,22 @@ export const MainHome:React.FC = ()=>{
     return (
         <>  
          <IonModal isOpen={eventBtn} cssClass='my-custom-class'>
-         <h2 style={{marginLeft:'20%'}}>Create Cool post</h2>
+         <IonItem>
+           <IonHeader style={{marginLeft:'25%'}}> Create Cool post</IonHeader>
+         </IonItem>
          {PostForm()}
          <IonButton
          color="primary"
         type="submit"
-        onClick={onSubmit}
-        className="btn btn-success">
+        onClick={onSubmit}>
         Post
       </IonButton>
+      
       <IonButton
          color="danger"
         type="submit"
         onClick={()=>setEbtn(false)}
-        className="btn btn-danger">
+        >
         Go back
       </IonButton>
          </IonModal>
