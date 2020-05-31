@@ -69,7 +69,7 @@ interface mydata{
     }).then((data)=>console.log(data))
     .catch(err=>console.log(err));
     setEbtn(false)
-    window.location.reload();
+    
     }
    
     return (
