@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import './ExploreContainer.css';
-import { IonGrid, IonRow, IonCol, IonContent, IonText, IonInput, IonItem, IonLabel, IonButton } from '@ionic/react';
+import { IonSpinner,IonGrid, IonRow, IonCol, IonContent, IonText, IonInput, IonItem, IonLabel, IonButton } from '@ionic/react';
 import {Link, Redirect, Router} from 'react-router-dom';
 import { LoginFetch } from '../helpers/login';
 import { Plugins } from '@capacitor/core';
@@ -13,9 +13,13 @@ interface LoginProps { }
 
 const Login: React.FC<LoginProps> = () => {
   const [value,setValue] = useState({
-    email:"ionic@gmail.com",
-    password:"ionichardik"
+    email:"",
+    password:""
   });
+    
+  const [err,setErr] = useState("");
+  const [loading,setLoad] = useState(false);
+
   
    
   const {email,password} = value;
@@ -30,26 +34,28 @@ const Login: React.FC<LoginProps> = () => {
     else setLogging(false);
   }
   const onSubmit = async (e:any)=>{
-   
+   setLoad(true);
    LoginFetch(value)
    .then(async(user)=>{
-      await Storage.set({
-         key: 'token',
-         value: user.token
-      });
-      await Storage.set({
-        key: 'user',
-        value: user.user
-      });
+      if(user.err || user.error){
+        setErr(user.err|| user.error);
+        setLogging(false);
+        setLoad(false);
+        return;
+      }
        authenticate(user,()=>{
          setLogging(true);
        });
+       setLoad(false);
    })
-   .catch(err=>console.log(err));
-   
-    
- 
-
+   .catch(err=>setErr("you can not login please signup"));
+  }
+  const showErr = ()=>{
+    return (
+      err && (
+          <IonItem><h5>got error {err}</h5></IonItem>
+      )
+    )
   }
 
   return (
@@ -59,7 +65,10 @@ const Login: React.FC<LoginProps> = () => {
           <IonCol>
             <IonText color="primary">
              <h1>Welcome to PCE Connect</h1>
-            
+             { loading && (
+            <IonSpinner className="spin" name="bubbles" color="primary"/>
+              )}
+                {showErr()}
                {performRedirect()}
               
              </IonText>
@@ -73,7 +82,7 @@ const Login: React.FC<LoginProps> = () => {
               <IonItem>
                 <IonLabel>Email</IonLabel>
                 <IonInput style={{color:"dodgerblue",borderStyle:"none",fontSize:"16px"}} type="email" value={email}
-                  onIonChange={(e:any)=> setValue({ ...value,email: (e.target as HTMLInputElement).value})} placeholder="Enter Password">
+                  onIonChange={(e:any)=> setValue({ ...value,email: (e.target as HTMLInputElement).value})} placeholder="Enter email">
                 </IonInput>
               </IonItem>
           </IonCol>

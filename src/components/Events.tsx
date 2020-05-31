@@ -25,11 +25,17 @@ interface mydata{
     });
 
     const {loading} = load;
-     
+    const setOrganiser = async()=>{
+      const { value } = await Storage.get({ key: 'user' });
+      console.log(JSON.stringify(value));
+      if(value)
+      setData({...data,organiser:value});       
+     };
     const [eventBtn,setEbtn] = useState(false);
     
 
     useEffect(()=>{
+      setOrganiser();
         EventFetch()
         .then((d)=>{
             console.log(d);
@@ -50,12 +56,7 @@ interface mydata{
         var token:any = (await Storage.get({ key: 'token' })).value;
         const { value } = await Storage.get({ key: 'user' });
         
-        console.log(token);
-        console.log(JSON.stringify(value));
-        const { keys } = await Storage.keys();
-        console.log('Got keys: ', keys);
-        if(value)
-        setData({...data,organiser:value});
+       
 
     fetch(`${API}/user/${value}/createEvent`, {
       method: 'POST',
@@ -68,7 +69,7 @@ interface mydata{
     }).then((data)=>console.log(data))
     .catch(err=>console.log(err));
     setEbtn(false)
-
+    window.location.reload();
     }
    
     return (

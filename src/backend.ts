@@ -1,1 +1,1 @@
-export const API:String = "http://localhost:8000/api";
+export const API:String = "https://pceapp-backend.herokuapp.com/api";

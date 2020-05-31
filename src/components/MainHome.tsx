@@ -47,9 +47,10 @@ export const MainHome:React.FC = ()=>{
         .then((d)=>{
             console.log(d);
             setData(d);
+            setLoad({...load,loading:false});
         })
         .catch(err=>console.log(err));
-        setLoad({...load,loading:false});
+       
     },[]);
     const handleChange = (name:string) => (event:any) => {
       const value = name === "photo" ? event.target.files[0] : event.target.value;
@@ -96,12 +97,13 @@ export const MainHome:React.FC = ()=>{
           })
           .catch(err=>console.log(err));
           setEbtn(false);
+          window.location.reload();
           
     }
     const PostForm = ()=>{
       return (
         <IonContent>
-          <h2 className="text-center " style={{marginLeft:"20%"}}>Post Something Cool</h2>
+         
         <form style={{marginTop:"15%"}}>
            
            <IonItem>
@@ -165,7 +167,7 @@ export const MainHome:React.FC = ()=>{
     return (
         <>  
          <IonModal isOpen={eventBtn} cssClass='my-custom-class'>
-         <h2 style={{marginLeft:'20%'}}>Create Cool Event</h2>
+         <h2 style={{marginLeft:'20%'}}>Create Cool post</h2>
          {PostForm()}
          <IonButton
          color="primary"

@@ -4,7 +4,7 @@ import { personOutline, home, heart, pin, star, globe, basket, camera, bookmark 
 import {MainHome} from '../components/MainHome';
 import Events from '../components/Events';
 import Posts from '../components/Posts';
-import Notify from '../components/Notify';
+import Users from '../components/Users';
 
 
 
@@ -58,7 +58,7 @@ export const SegmentExamples: React.FC = () => {
             }
              {
               page==="notifications" && (
-                <Notify/>
+                <Users/>
               )
             }
           </IonCol>
