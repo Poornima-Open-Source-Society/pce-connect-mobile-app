@@ -69,12 +69,12 @@ interface mydata{
     }).then((data)=>console.log(data))
     .catch(err=>console.log(err));
     setEbtn(false)
-    
+    window.location.reload();
     }
    
     return (
         <>
-        <IonModal isOpen={eventBtn} cssClass='my-custom-class'>
+        <IonModal isOpen={eventBtn} >
          <h2 style={{marginLeft:'20%'}}>Create Cool Event</h2>
          
               <IonContent>
