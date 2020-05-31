@@ -97,7 +97,7 @@ export const MainHome:React.FC = ()=>{
           })
           .catch(err=>console.log(err));
           setEbtn(false);
-          window.location.reload();
+        
           
     }
     const PostForm = ()=>{
