@@ -10,19 +10,7 @@ const Home: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-               <IonMenuButton autoHide={false}>
-               </IonMenuButton>
-          </IonButtons>
-          <IonButtons slot="primary">
-            <IonButton>
-              <IonIcon slot ="icons-only" md="ellipsis-vertical">
-              </IonIcon>
-            </IonButton>
-          </IonButtons>
-          <IonTitle>Strandard</IonTitle>
-        </IonToolbar>
+        
       </IonHeader>
       <IonContent>
         <IonHeader collapse="condense">
@@ -31,6 +19,7 @@ const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <Login />
+        <IonHeader style={{left:"23%"}} >Made with love by Hardik </IonHeader>
       </IonContent>
     </IonPage>
   );
